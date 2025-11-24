@@ -1,37 +1,21 @@
-# Python
-__pycache__/
-*.py[cod]
-*.pyc
-*.pyo
-*.pyd
-.Python
+# Configuración de Django
+SECRET_KEY=django-insecure-change-this-in-production
+DEBUG=True
+ALLOWED_HOSTS=localhost,127.0.0.1
 
-# Virtual Environment
-venv/
-env/
-ENV/
+# Base de Datos (SQLite por defecto)
+DB_ENGINE=django.db.backends.sqlite3
 
-# Django
-*.log
-db.sqlite3
-db.sqlite3-journal
+# Para PostgreSQL en producción, usar:
+# DB_ENGINE=django.db.backends.postgresql
+# DB_NAME=nombre_db
+# DB_USER=usuario
+# DB_PASSWORD=contraseña
+# DB_HOST=host_db
+# DB_PORT=5432
 
-# Environment variables
-.env
+# CORS - Origenes permitidos
+CORS_ALLOWED_ORIGINS=http://localhost:3000,http://127.0.0.1:8000,http://localhost:8000
 
-# IDE
-.vscode/
-.idea/
-*.swp
-*.swo
-
-# OS
-.DS_Store
-Thumbs.db
-
-# Static files (se regeneran en Railway)
-staticfiles/
-media/
-
-# PyCharm
-.idea/
+# CSRF - Para producción
+# CSRF_TRUSTED_ORIGINS=https://tu-dominio.onrender.com
