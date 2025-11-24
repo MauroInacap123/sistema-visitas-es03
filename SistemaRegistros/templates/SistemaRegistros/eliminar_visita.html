@@ -1,0 +1,21 @@
+{% extends 'SistemaRegistros/base.html' %}
+
+{% block content %}
+<h2 class="text-danger"><i class="bi bi-trash"></i> Eliminar Visita</h2>
+
+<div class="alert alert-warning">
+    <p><strong>¿Está seguro que desea eliminar esta visita?</strong></p>
+    <p><strong>Nombre:</strong> {{ visita.nombre }}</p>
+    <p><strong>RUT:</strong> {{ visita.rut }}</p>
+</div>
+
+<form method="post">
+    {% csrf_token %}
+    <button type="submit" class="btn btn-danger">
+        <i class="bi bi-trash"></i> Sí, Eliminar
+    </button>
+    <a href="{% url 'lista_visitas' %}" class="btn btn-secondary">
+        <i class="bi bi-x-circle"></i> Cancelar
+    </a>
+</form>
+{% endblock %}

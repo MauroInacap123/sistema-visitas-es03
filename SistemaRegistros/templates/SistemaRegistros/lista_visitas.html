@@ -1,0 +1,72 @@
+{% extends 'SistemaRegistros/base.html' %}
+
+{% block content %}
+<div class="d-flex justify-content-between mb-3">
+    <h2><i class="bi bi-list-ul"></i> Lista de Visitas</h2>
+    <a href="{% url 'registrar_visita' %}" class="btn btn-primary">
+        <i class="bi bi-plus-circle"></i> Nueva Visita
+    </a>
+</div>
+
+<div class="card">
+    <div class="card-body">
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>RUT</th>
+                    <th>Nombre</th>
+                    <th>Motivo</th>
+                    <th>Entrada</th>
+                    <th>Salida</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for visita in visitas %}
+                <tr>
+                    <td>{{ visita.rut }}</td>
+                    <td>{{ visita.nombre }}</td>
+                    <td>{{ visita.motivo|truncatewords:5 }}</td>
+                    <td>{{ visita.fecha_entrada|date:"d/m/Y H:i" }}</td>
+                    <td>{{ visita.hora_salida|default:"-" }}</td>
+                    <td>
+                        <a href="{% url 'editar_visita' visita.pk %}" class="btn btn-sm btn-warning">
+                            <i class="bi bi-pencil"></i> Editar
+                        </a>
+                        <a href="{% url 'eliminar_visita' visita.pk %}" class="btn btn-sm btn-danger">
+                            <i class="bi bi-trash"></i> Eliminar
+                        </a>
+                    </td>
+                </tr>
+                {% empty %}
+                <tr>
+                    <td colspan="6" class="text-center">No hay visitas registradas</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        {% if visitas.has_other_pages %}
+        <nav>
+            <ul class="pagination justify-content-center">
+                {% if visitas.has_previous %}
+                <li class="page-item">
+                    <a class="page-link" href="?page={{ visitas.previous_page_number }}">Anterior</a>
+                </li>
+                {% endif %}
+
+                <li class="page-item active">
+                    <span class="page-link">{{ visitas.number }}</span>
+                </li>
+
+                {% if visitas.has_next %}
+                <li class="page-item">
+                    <a class="page-link" href="?page={{ visitas.next_page_number }}">Siguiente</a>
+                </li>
+                {% endif %}
+            </ul>
+        </nav>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

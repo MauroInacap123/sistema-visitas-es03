@@ -1,0 +1,40 @@
+{% extends 'SistemaRegistros/base.html' %}
+
+{% block content %}
+<h2><i class="bi bi-pencil"></i> Editar Visita</h2>
+
+<div class="card">
+    <div class="card-body">
+        <form method="post">
+            {% csrf_token %}
+            
+            <div class="mb-3">
+                <label for="rut" class="form-label">RUT</label>
+                <input type="text" class="form-control" name="rut" id="rut" value="{{ visita.rut }}" required>
+            </div>
+
+            <div class="mb-3">
+                <label for="nombre" class="form-label">Nombre Completo</label>
+                <input type="text" class="form-control" name="nombre" id="nombre" value="{{ visita.nombre }}" required>
+            </div>
+
+            <div class="mb-3">
+                <label for="motivo" class="form-label">Motivo</label>
+                <textarea class="form-control" name="motivo" id="motivo" rows="3" required>{{ visita.motivo }}</textarea>
+            </div>
+
+            <div class="mb-3">
+                <label for="hora_salida" class="form-label">Hora de Salida (opcional)</label>
+                <input type="time" class="form-control" name="hora_salida" id="hora_salida" value="{{ visita.hora_salida|default:'' }}">
+            </div>
+
+            <button type="submit" class="btn btn-primary">
+                <i class="bi bi-save"></i> Guardar Cambios
+            </button>
+            <a href="{% url 'lista_visitas' %}" class="btn btn-secondary">
+                <i class="bi bi-x-circle"></i> Cancelar
+            </a>
+        </form>
+    </div>
+</div>
+{% endblock %}
