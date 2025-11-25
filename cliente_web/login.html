@@ -60,11 +60,11 @@
                                     class="form-control" 
                                     id="apiUrl" 
                                     name="apiUrl"
-                                    value="http://127.0.0.1:8000"
-                                    placeholder="http://127.0.0.1:8000"
+                                    value="https://sistema-visitas-es03.onrender.com"
+                                    placeholder="https://sistema-visitas-es03.onrender.com"
                                 >
                                 <small class="text-muted">
-                                    Local: http://127.0.0.1:8000 | Producción: https://tu-app.onrender.com
+                                    Local: http://127.0.0.1:8000 | Producción: https://sistema-visitas-es03.onrender.com
                                 </small>
                             </div>
 
@@ -102,7 +102,10 @@
             
             const username = document.getElementById('username').value;
             const password = document.getElementById('password').value;
-            const apiUrl = document.getElementById('apiUrl').value;
+            let apiUrl = document.getElementById('apiUrl').value;
+            
+            // FORZAR URL de producción (puedes comentar esta línea si quieres usar local)
+            apiUrl = 'https://sistema-visitas-es03.onrender.com';
             
             // Guardar URL de la API
             localStorage.setItem('API_URL', apiUrl);
